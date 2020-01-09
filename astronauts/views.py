@@ -1,3 +1,4 @@
+from rest_framework.response import Response
 from django.shortcuts import render
 from .models import Astronaut
 from rest_framework import viewsets
@@ -10,4 +11,7 @@ class AstronautViewSet(viewsets.ModelViewSet):
     """
     queryset = Astronaut.objects.all()
     serializer_class = AstronautSerializer
+
+    def get_paginated_response(self, data):
+        return Response(data)
 
